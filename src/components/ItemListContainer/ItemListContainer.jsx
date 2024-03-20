@@ -12,6 +12,13 @@ export default function ItemListContainer({ greeting }) {
   const { categoryId } = useParams();
 
   useEffect(() => {
+    if (categoryId) document.title = 'Ground Footwear | ' + categoryId 
+    return () => {
+        document.title = 'Ground Footwear | Reconnect with Mother Earth'
+    }
+}, [categoryId])
+
+  useEffect(() => {
 
     const productConditionalRendering = categoryId ? getProductsByCategory : getProducts
 
