@@ -1,11 +1,27 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { getProducts, getProductsByCategory } from "../../asyncMock";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./ItemListContainer.css";
+import ItemList from "../ItemList/ItemList";
 
-import './ItemListContainer.css'
+export default function ItemListContainer({ greeting }) {
+  const [products, setProducts] = useState([]);
 
-export default function ItemListContainer({greeting}) {
+  const { categoryId } = useParams();
+
+  useEffect(() => {
+
+    const productConditionalRendering = categoryId ? getProductsByCategory : getProducts
+
+    productConditionalRendering(categoryId).then((data) => setProducts(data));
+  }, [categoryId]);
+
   return (
     <section>
-        <h2>{greeting}</h2>
+      <h2>{greeting}</h2>
+      <ItemList products={products} />
     </section>
-  )
+  );
 }

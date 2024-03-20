@@ -1,0 +1,26 @@
+.CardItemDetail{
+    width: 600px;
+    border: solid 2px rgba(191, 218, 222, 0.496);
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 5px 10px 0px 10px;
+    height: 570px;
+    margin: 20px auto 0 auto;
+}
+
+.ItemHeader{
+    text-align: center;
+}
+
+.ItemImgDetail{
+    width: 150px;
+    border-radius: 0.5rem;
+    height: 120px;
+    margin: 0 40%;
+}
+
+.InfoDetail{
+    margin: 20px;
+    text-align: center;
+}
+
