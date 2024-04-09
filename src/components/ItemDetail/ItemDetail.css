@@ -4,7 +4,7 @@
     background-color: white;
     border-radius: 0.5rem;
     padding: 5px 10px 0px 10px;
-    height: 570px;
+    height: 480px;
     margin: 20px auto 0 auto;
 }
 
@@ -20,7 +20,11 @@
 }
 
 .InfoDetail{
-    margin: 20px;
+    margin: 15px;
     text-align: center;
 }
 
+.countCartButton {
+    width: 80px;
+    margin: 0 45%;
+}

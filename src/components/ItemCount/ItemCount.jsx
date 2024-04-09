@@ -1,7 +1,8 @@
 import "./ItemCount.css";
 import { useState } from "react";
 
-export default function ItemCount({stock}) {
+// eslint-disable-next-line react/prop-types
+export default function ItemCount({ stock, onAddToCart }) {
   const [contador, setContador] = useState(0);
 
   const handleClickDec = () => {
@@ -16,7 +17,10 @@ export default function ItemCount({stock}) {
     }
   };
   const handleClickAdd = () => {
-    console.log( contador + " items were added to your cart");
+    if (contador > 0) {
+      onAddToCart(contador);
+    }
+    console.log(contador + " items were added to your cart");
   };
   return (
     <>
@@ -30,7 +34,11 @@ export default function ItemCount({stock}) {
             +
           </button>
         </div>
-        <button onClick={handleClickAdd} className="addButton" disabled= {!stock}>
+        <button
+          onClick={handleClickAdd}
+          className="addButton"
+          disabled={!stock}
+        >
           Add to Cart
         </button>
       </div>
