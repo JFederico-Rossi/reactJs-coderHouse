@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { getProducts, getProductsByCategory } from "../../asyncMock";
+import { getProducts, getProductsByCategory } from "../../firebase/firebase.js";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./ItemListContainer.css";

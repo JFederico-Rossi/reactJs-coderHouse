@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import ItemCount from "../ItemCount/ItemCount";
+import { CartContext } from "../../context/CartContext";
 import "./ItemDetail.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ItemDetail({
+  id,
   name,
   img,
   category,
@@ -13,9 +15,14 @@ export default function ItemDetail({
   stock,
 }) {
   const [quantityAdded, setQuantityAdded] = useState(0);
+  const { addItem } = useContext(CartContext);
 
   const handleAddToCart = (quantity) => {
     setQuantityAdded(quantity);
+
+    const item = { id, name, price };
+
+    addItem(item, id, quantity);
   };
 
   return (
@@ -33,7 +40,7 @@ export default function ItemDetail({
             flexDirection: "column",
             gap: 2,
             flexWrap: "wrap",
-            marginBottom: 25,
+            marginBottom: 5,
           }}
         >
           <p className="InfoDetail">
@@ -50,17 +57,24 @@ export default function ItemDetail({
             <strong>Stock:</strong> {stock}
           </p>
         </div>
-        <div style={{height: "200px"}}>
+        <div>
           {quantityAdded > 0 ? (
             <>
               <p style={{ color: "blue", margin: "0px 200px 30px 100px" }}>
                 Items successfully added to the cart
               </p>
-              <button className="countCartButton">
-                <Link to={"/cart"} className="linkNav">
-                  View Cart
-                </Link>
-              </button>
+              <div className='detailButton'>
+                <button>
+                  <Link to={"/cart"} className="linkNav">
+                    View Cart
+                  </Link>
+                </button>
+                <button>
+                  <Link to={"/"} className="linkNav">
+                    Continue Shopping
+                  </Link>
+                </button>
+              </div>
             </>
           ) : (
             <ItemCount stock={stock} onAddToCart={handleAddToCart} />

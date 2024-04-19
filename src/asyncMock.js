@@ -22,7 +22,7 @@ const products = [
         name: 'Ra IV Mens', 
         price: 180, 
         category: 'Men', 
-        img:'https://www.vivobarefoot.com/media/catalog/product/2/0/203100-01_side_2.jpg?quality=100&bg-color=255,255,255&fit=bounds&height=700&width=70g', 
+        img:'https://www.vivobarefoot.com/media/catalog/product/3/0/305102-02_side_1.jpg?quality=100&bg-color=255%2C255%2C255&fit=bounds&height=700&width=700', 
         stock: 9, 
         description:'The Natural, Wild Hide Leather Oxford That Blurs Work And Play.'
     },
@@ -85,7 +85,7 @@ const products = [
         name: 'Gobi Chelsea Womens', 
         price: 125, 
         category: 'Women', 
-        img:'https://www.vivobarefoot.com/media/catalog/product/2/0/201432-01_side.jpg?quality=100&bg-color=255,255,255&fit=bounds&height=700&width=700', 
+        img:'https://www.vivobarefoot.com/media/catalog/product/2/0/201432-01_side.jpg?quality=100&bg-colvscode-file://vscode-app/Users/federicorossi/Desktop/Coding/Software/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/code/electron-sandbox/workbench/workbench.htmlor=255,255,255&fit=bounds&height=700&width=700', 
         stock: 4, 
         description:'Barefoot Chelsea boots for the re-generation.'
     },

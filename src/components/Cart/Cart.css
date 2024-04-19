@@ -1,0 +1,38 @@
+.checkoutDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  gap: 5px;
+}
+
+.checkoutDiv h3 {
+  text-align: center;
+  line-height: 5px;
+  font-size: large;
+  text-shadow: rgb(107, 119, 211) 1px 0 10px;
+}
+
+.checkoutDiv a {
+  text-decoration: none;
+  color: #213547;
+  /* font-size: x-small; */
+  margin-top: 10px;
+  /* border: solid 0.5px rgba(0, 0, 0, 0.107); */
+  /* background-color: rgba(107, 107, 167, 0.552);
+  border-radius: 15px;
+  padding: 3px; */
+}
+
+
+.checkoutDiv button {
+  font-size: x-small;
+  color: #213547;
+  background-color: rgba(243, 178, 178, 0.344);
+  border: solid 0.5px rgba(0, 0, 0, 0.107);
+  border-radius: 15px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+

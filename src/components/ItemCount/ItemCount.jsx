@@ -6,9 +6,9 @@ export default function ItemCount({ stock, onAddToCart }) {
   const [contador, setContador] = useState(0);
 
   const handleClickDec = () => {
-    if (contador > 0) {
+    if (contador > 0 && contador < stock) {
       setContador(contador - 1);
-    }
+    } 
   };
 
   const handleClickInc = () => {
@@ -18,7 +18,8 @@ export default function ItemCount({ stock, onAddToCart }) {
   };
   const handleClickAdd = () => {
     if (contador > 0) {
-      onAddToCart(contador);
+      const itemCount = parseInt(contador);
+      onAddToCart(itemCount);
     }
     console.log(contador + " items were added to your cart");
   };
@@ -26,11 +27,11 @@ export default function ItemCount({ stock, onAddToCart }) {
     <>
       <div className="countContainer">
         <div className="countDiv">
-          <button onClick={handleClickDec} className="countButton">
+          <button onClick={handleClickDec} className="countButton" disabled={contador === 0}>
             -
           </button>
           <h4>{contador}</h4>
-          <button onClick={handleClickInc} className="countButton">
+          <button onClick={handleClickInc} className="countButton" disabled={contador === stock}>
             +
           </button>
         </div>
