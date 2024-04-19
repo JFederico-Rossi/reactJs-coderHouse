@@ -52,3 +52,11 @@ export async function sendOrder(order){
     const docRef = await addDoc(orderCollection, order)
     return docRef.id
 }
+
+// export async function deleteProduct(id) {
+//     try {
+//       await deleteDoc(doc(db, 'products', id));
+//     } catch (error) {
+//       console.log('Error: ' + error);
+//     }
+//   }

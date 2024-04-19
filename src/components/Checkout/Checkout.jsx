@@ -9,9 +9,10 @@ export default function Checkout() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const { cart, emptyCart, total, totalQuantity } = useContext(CartContext);
+  const { cart, emptyCart, getTotal } = useContext(CartContext);
   const navigate = useNavigate();
 
+  // eslint-disable-next-line no-unused-vars
   const selectedProducts = cart.map((prod) => {
     return {
       id: prod.id,
@@ -42,9 +43,9 @@ export default function Checkout() {
         phone: phoneNumber,
         mail: email,
       },
-      order: selectedProducts,
+      order: cart,
       date,
-      total,
+      total: getTotal(),
     };
 
     try {
@@ -80,11 +81,14 @@ export default function Checkout() {
           <div>
             <h1>Your Purchase Details</h1>
             {cart.map((product) => (
-              <h4 key={product.id}>
-                {product.name} <br /> Quantity: {product.quantity} <br /> Total: $
-                {total}
-              </h4>
-            ))}
+              <h5 key={product.id}>
+                {product.name} <br /> Quantity: {product.quantity} <br /> Subotal: $
+                {product.quantity*product.price}
+              </h5>
+              ))}
+              <p style={{textAlign: 'center'}}>Total Items: {cart.reduce((total, product) => total + product.quantity, 0)}</p>
+              <p style={{textAlign: 'center'}}>Total Price: ${cart.reduce((total, product) => total + product.quantity * product.price, 0)}</p>
+
           </div>
         </div>
       </div>

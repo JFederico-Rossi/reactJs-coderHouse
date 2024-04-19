@@ -1,17 +1,38 @@
 import "./Cart.css";
-import { useContext} from "react";
+import { useContext, useState, useEffect} from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
 
 export default function Cart() {
-  const { cart, emptyCart, totalQuantity} =
+  const { cart, emptyCart, totalQuantity, updateCart} =
     useContext(CartContext);
 
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+      const newTotalPrice = cart.reduce((total, product) => {
+        return total + product.price * product.quantity;
+      }, 0);
+  
+      setTotalPrice(newTotalPrice);
+    }, [cart]);
+
+    const handleQuantityChange = (id, newQuantity) => {
+      const updatedCart = cart.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      });
+      
+      updateCart(updatedCart);
 
 
-    const totalPrice = cart.reduce((total, product) => {
+    const newTotalPrice = updatedCart.reduce((total, product) => {
       return total + product.price * product.quantity}, 0)
+      setTotalPrice(newTotalPrice);
+  };
 
   if (totalQuantity === 0) {
     return (
@@ -30,7 +51,7 @@ export default function Cart() {
       {cart.length > 0 && (
         <>
           {cart.map((product) => (
-            <CartItem key={product.id} {...product} />
+            <CartItem key={product.id} {...product} onQuantityChange={handleQuantityChange} updateTotalPrice={setTotalPrice} />
           ))}
         </>
       )}

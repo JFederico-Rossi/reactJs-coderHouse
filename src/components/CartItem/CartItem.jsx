@@ -3,7 +3,7 @@ import "./CartItem.css";
 import { CartContext } from "../../context/CartContext";
 import { useContext, useState } from "react";
 
-export default function CartItem({ id, name, quantity, price }) {
+export default function CartItem({ id, name, quantity, price, onQuantityChange, updateTotalPrice }) {
   
   const { addItem, emptyCart, getSubtotal } = useContext(CartContext);
 
@@ -11,6 +11,10 @@ export default function CartItem({ id, name, quantity, price }) {
   // const [subtotal, setSubtotal] = useState(itemQuantity * price);
 
 
+  const handleQuantityChange = (newQuantity) => {
+    setItemQuantity(newQuantity);
+    onQuantityChange(id, newQuantity);
+  };
 
   // const getSubtotal = (itemQuantity, price) => {
   //   const subtotal = itemQuantity * price;
@@ -27,6 +31,7 @@ export default function CartItem({ id, name, quantity, price }) {
   const decreaseQuantity = () => {
     if (itemQuantity >= 2) {
       setItemQuantity(itemQuantity - 1);
+      handleQuantityChange(itemQuantity - 1);
       // getSubtotal(itemQuantity - 1, price);
     } else {
       emptyCart();
@@ -34,7 +39,7 @@ export default function CartItem({ id, name, quantity, price }) {
   };
 
   const subtotal = getSubtotal(itemQuantity, price)
-
+  updateTotalPrice(subtotal);
   return (
     <>
       <article key={{ id }} className="cartCard">
