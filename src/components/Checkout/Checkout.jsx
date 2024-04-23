@@ -52,9 +52,9 @@ export default function Checkout() {
       const orderId = await sendOrder(order);
       Swal.fire({
         title: "Order Confirmed!",
-        text: `Thanks for your purchase, ${name} on ${date.getDay()}/${date.getMonth()}. Your order unique number is: ${orderId}. We will reach out to arrange payment and shipping.`,
+        text: `Thanks for your purchase, ${name} on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}. Your order unique number is: ${orderId}. We will reach out to arrange payment and shipping.`,
         icon: "success",
-        confirmButtonText: "Return",
+        confirmButtonText: "Exit",
         color: "blue",
       }).then((result) => {
         if (result.isConfirmed) {
