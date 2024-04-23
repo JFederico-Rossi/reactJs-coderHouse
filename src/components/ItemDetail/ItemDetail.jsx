@@ -54,7 +54,7 @@ export default function ItemDetail({
             <strong>Price:</strong> ${price}
           </p>
           <p className="InfoDetail">
-            <strong>Stock:</strong> {stock}
+            <strong>Stock:</strong> {stock - quantityAdded}
           </p>
         </div>
         <div>

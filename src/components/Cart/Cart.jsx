@@ -1,38 +1,13 @@
+/* eslint-disable no-unused-vars */
 import "./Cart.css";
-import { useContext, useState, useEffect} from "react";
+import { useContext} from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
 
 export default function Cart() {
-  const { cart, emptyCart, totalQuantity, updateCart} =
+  const { cart, emptyCart, totalQuantity, updateCart, total, updateTotalPrice} =
     useContext(CartContext);
-
-    const [totalPrice, setTotalPrice] = useState(0);
-
-    useEffect(() => {
-      const newTotalPrice = cart.reduce((total, product) => {
-        return total + product.price * product.quantity;
-      }, 0);
-  
-      setTotalPrice(newTotalPrice);
-    }, [cart]);
-
-    const handleQuantityChange = (id, newQuantity) => {
-      const updatedCart = cart.map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: newQuantity };
-        }
-        return item;
-      });
-      
-      updateCart(updatedCart);
-
-
-    const newTotalPrice = updatedCart.reduce((total, product) => {
-      return total + product.price * product.quantity}, 0)
-      setTotalPrice(newTotalPrice);
-  };
 
   if (totalQuantity === 0) {
     return (
@@ -45,39 +20,41 @@ export default function Cart() {
     );
   }
 
+  const handleSubtotalChange = (id, newSubtotal) => {
+    updateTotalPrice(id, newSubtotal);
+  };
+
   return (
     <section>
       <h2>Your Cart</h2>
       {cart.length > 0 && (
         <>
-          {cart.map((product) => (
-            <CartItem key={product.id} {...product} onQuantityChange={handleQuantityChange} updateTotalPrice={setTotalPrice} />
-          ))}
+          {cart.map((item) => (
+        <CartItem
+          key={item.id}
+          id={item.id}
+          name={item.name}
+          quantity={item.quantity}
+          price={item.price}
+        />
+      ))}
         </>
       )}
 
       <div className="checkoutDiv">
-        <h3> Total: $ {totalPrice} </h3>
-        <button className="bin" onClick={() => emptyCart()}>
-          {" "}
-          <img
-            style={{
-              width: 20,
-              height: 20,
-              backgroundColor: "peru",
-              borderRadius: 15,
-            }}
-            src="public/trash-bin.png"
-            alt=""
-          />{" "}
-        </button>
+        <h3> Total: $ {total} </h3>
+        <div style={{display: "flex", flexDirection: 'row', gap: 10, alignItems: 'end', margin: '50px 30%'}}>
         <Link to="/checkout">
           {" "}
-          <button>Checkout </button>
+          <button style={{backgroundColor: 'rgba(94, 94, 235, 0.205)'}}>Checkout </button>
         </Link>
+        <button style={{backgroundColor: 'rgba(205, 134, 63, 0.554)'}} onClick={() => emptyCart()}>
+          Clear Cart
+        </button>
         <Link to={"/"} className="linkNav">
           <button>Continue Shopping</button>
         </Link>
+        </div>
       </div>
     </section>
   );

@@ -81,14 +81,12 @@ export default function Checkout() {
           <div>
             <h1>Your Purchase Details</h1>
             {cart.map((product) => (
-              <h5 key={product.id}>
+              <h6 style={{border: '0.5px dotted lightgrey', margin: '0 30%'}} key={product.id}>
                 {product.name} <br /> Quantity: {product.quantity} <br /> Subotal: $
                 {product.quantity*product.price}
-              </h5>
+              </h6>
               ))}
-              <p style={{textAlign: 'center'}}>Total Items: {cart.reduce((total, product) => total + product.quantity, 0)}</p>
-              <p style={{textAlign: 'center'}}>Total Price: ${cart.reduce((total, product) => total + product.quantity * product.price, 0)}</p>
-
+              <h4 style={{textAlign: 'center', border: '1px solid darkgreen', margin: '15px 30%', borderRadius: 15}}>Total Items: {cart.reduce((total, product) => total + product.quantity, 0)} <br />Total Price: ${cart.reduce((total, product) => total + product.quantity * product.price, 0)}</h4>
           </div>
         </div>
       </div>
@@ -102,6 +100,10 @@ export default function Checkout() {
           justifyContent: "flex-start",
           alignItems: "center",
           gap: 10,
+          border: '1px solid darkgreen',
+          borderRadius: 15,
+          margin: '0 30%',
+          padding: '15px 5px'
         }}
         onSubmit={handleSubmit}
       >
@@ -149,7 +151,7 @@ export default function Checkout() {
             required
           />
         </div>
-        <button style={{ marginTop: 20 }} type="submit">
+        <button style={{ marginTop: 20, backgroundColor: 'rgba(94, 94, 235, 0.205)', borderRadius: 15, fontSize: 'larger', cursor: 'pointer' }} type="submit">
           Finish Purchase
         </button>
       </form>

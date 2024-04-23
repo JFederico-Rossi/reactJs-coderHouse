@@ -3,11 +3,10 @@
 import { createContext } from "react";
 import { useState } from "react";
 
-export const CartContext = createContext({ cart: [], updateCart: () => {}, });
+export const CartContext = createContext({ cart: [], updateCart: () => {}, updateQuantityAndTotalPrice: () => {},});
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  console.log(cart);
 
   const [totalQuantity, setTotalQuantity] = useState(0); 
 
@@ -18,9 +17,14 @@ export function CartProvider({ children }) {
   };
 
   const addItem = (item, name, quantity) => {
-    !isInCart(item.id)
-      ? setCart((prev) => [...prev, { ...item, quantity }])
-      : console.error("Product already added");
+    const existingItemIndex = cart.findIndex((prod) => prod.id === item.id);
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity += quantity;
+      setCart(updatedCart);
+    } else {
+      setCart((prev) => [...prev, { ...item, quantity }]);
+    }
     setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity); 
   };
 
@@ -72,10 +76,16 @@ export function CartProvider({ children }) {
     const getSubtotal = (quantity, price) => {
       return quantity* price
     }
+    const updateQuantityAndTotalPrice = (itemId, newQuantity) => {
+      const updatedCart = cart.map((item) =>
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
+      );
+      updateCart(updatedCart);
+    };
 
   return (
     <CartContext.Provider
-      value={{ cart, updateCart,setCart, addItem, emptyCart, removeItem, totalQuantity, total, getSubtotal }}
+      value={{ cart, updateCart,setCart, addItem, emptyCart, removeItem, totalQuantity, total, getSubtotal, updateQuantityAndTotalPrice }}
     >
       {children}
     </CartContext.Provider>

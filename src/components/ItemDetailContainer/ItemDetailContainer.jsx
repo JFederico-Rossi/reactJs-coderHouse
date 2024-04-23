@@ -4,12 +4,10 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext.jsx';
 
-
 export default function ItemDetailContainer() {
-  const [product, setProduct] = useState (null);
-  const {productId} = useParams ();
+  const [product, setProduct] = useState(null);
+  const { productId } = useParams();
   const { cart } = useContext(CartContext);
-
 
   useEffect(() => {
     let ignore = false;
@@ -19,7 +17,8 @@ export default function ItemDetailContainer() {
         if (!ignore) {
           const isInCart = cart.find((prod) => prod.id === res.id);
           if (isInCart) {
-            setProduct({ ...res, stock: isInCart.stock - isInCart.quantity });
+            const updatedStock = res.stock - isInCart.quantity; // Calculate updated stock
+            setProduct({ ...res, stock: updatedStock }); // Update product with updated stock
           } else {
             setProduct(res);
           }
@@ -32,10 +31,9 @@ export default function ItemDetailContainer() {
     };
   }, [productId, cart]);
 
-  
   return (
-  <>
-    <ItemDetail {...product}/> 
-  </>
+    <>
+      <ItemDetail {...product}/>
+    </>
   )
 }
