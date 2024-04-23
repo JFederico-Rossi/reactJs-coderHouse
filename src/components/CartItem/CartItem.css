@@ -1,0 +1,34 @@
+.cartCard {
+  border: solid 1px rgba(0, 0, 0, 0.102);
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin: 10px auto 0;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+h6 {
+  font-size: large;
+  font-weight: 300;
+  margin: 25px;
+}
+
+.cartCard h6 {
+  font-size: small;
+  margin: 2px auto;
+}
+
+.imageContainer {
+  border: solid black 1px;
+  width: 50px; /* Ancho deseado */
+  margin: 0 auto; /* Centra horizontalmente dentro del artículo */
+}
+
+.imageContainer img {
+  width: 100%; /* Ajusta el ancho de la imagen para que llene el contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}

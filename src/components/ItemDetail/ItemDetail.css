@@ -4,7 +4,7 @@
     background-color: white;
     border-radius: 0.5rem;
     padding: 5px 10px 0px 10px;
-    height: 570px;
+    height: 440px;
     margin: 20px auto 0 auto;
 }
 
@@ -20,7 +20,14 @@
 }
 
 .InfoDetail{
-    margin: 20px;
+    margin: 15px;
     text-align: center;
 }
 
+
+.detailButton{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}

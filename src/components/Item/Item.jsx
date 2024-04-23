@@ -3,12 +3,12 @@
 
 import { useNavigate } from "react-router-dom";
 
-export default function Item({id, name, img, category, price, stock}) {
-const navigate = useNavigate();
+export default function Item({ id, name, img, category, price, stock }) {
+  const navigate = useNavigate();
 
-const handleClick = (id) => {
-  navigate(`/product/${id}`);
-};
+  const handleClick = (id) => {
+    navigate(`/product/${id}`);
+  };
 
   return (
     <>
@@ -18,12 +18,12 @@ const handleClick = (id) => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          flexWrap: 'wrap',
+          flexWrap: "wrap",
           border: "solid 1px darkgreen",
-          width: 180,
-          height: 400,
+          width: 200,
+          height: "auto",
           borderRadius: 15,
-          marginBottom: 20,
+          marginBottom: 10,
           padding: 10,
           gap: 5,
         }}
@@ -31,9 +31,13 @@ const handleClick = (id) => {
         <h3>{name}</h3>
         <img src={img} alt={name} style={{ width: 150, marginBottom: 20 }} />
         <p>{category}</p>
-        <p>Precio $ {price}</p>
-        <p>Stock: {stock} </p>
-        <button onClick={() => handleClick(id)}> See details </button>
+        <p>Price: $ {price}</p>
+        {stock < 3 ? (
+          <p style={{ color: "red" }}>Stock: {stock} </p>
+        ) : (
+          <p>Stock: {stock} </p>
+        )}
+        <button onClick={() => handleClick(id)} style={{marginBottom: '3px'}}> See details </button>
       </article>
     </>
   );
